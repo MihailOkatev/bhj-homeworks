@@ -12,10 +12,10 @@
 //     }
 // }
 
-let countdownStartAdvanced = document.getElementById("timer").textContent
+const timer = document.getElementById("timer");
+const countdownStartAdvanced = document.getElementById("timer").textContent;
 let timeParser = countdownStartAdvanced.split(":");//парсим строку по разделителю 
 let timeParserToNum = timeParser.map(item => Number(item)); // все строки делаем числами, чтобы математически с ними работать
-console.log(timeParserToNum);
 
 let tickAdvanced = () => {
     timeParserToNum[2] -= 1;// делаем тик, вычитаем секунду
@@ -25,7 +25,7 @@ let tickAdvanced = () => {
                 timeArray[index] = "0" + element;
             }
         });
-        let timeString = `${timeArray[0]}:${timeArray[1]}:${timeArray[2]}`
+        const timeString = `${timeArray[0]}:${timeArray[1]}:${timeArray[2]}`
         console.log(timeString);
 
         timer.textContent = timeString;
