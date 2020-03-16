@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 const popupMain = document.getElementById("modal_main");
 const successWindow = document.getElementById("modal_success");
 function showModal() {

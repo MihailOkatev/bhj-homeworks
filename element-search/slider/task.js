@@ -1,3 +1,4 @@
+"use strict";
 const arrows = Array.from(document.querySelectorAll(".slider__arrow"));
 console.log(arrows);  
 let slidersArr = Array.from(document.querySelectorAll(".slider__item"));

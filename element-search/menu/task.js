@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 document.addEventListener('click', e => {
 if(e.target.classList.contains("menu__link")){
     if(e.target.closest(".menu").querySelector(".menu_active") != null) {
