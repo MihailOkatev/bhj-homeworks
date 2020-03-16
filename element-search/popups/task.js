@@ -10,11 +10,11 @@ function showSuccess() {
 }
 const body = document.getElementsByTagName("body")[0];
 body.onload = showModal;
-document.addEventListener('click', element => {
-    if(element.target.classList.contains("modal__close")) {
-        element.target.closest("div[id]").classList.remove("modal_active");
+document.addEventListener('click', e => {
+    if(e.target.classList.contains("modal__close")) {
+        e.target.closest("div[id]").classList.remove("modal_active");
     }
-    if(element.target.classList.contains("show-success")) {
+    if(e.target.classList.contains("show-success")) {
         showSuccess();
     }
 });
