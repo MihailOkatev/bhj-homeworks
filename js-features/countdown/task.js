@@ -14,9 +14,9 @@
 
 const timer = document.getElementById("timer");
 const countdownStartAdvanced = document.getElementById("timer").textContent;
+const download = document.getElementById("download");
 let timeParser = countdownStartAdvanced.split(":");//парсим строку по разделителю 
 let timeParserToNum = timeParser.map(item => Number(item)); // все строки делаем числами, чтобы математически с ними работать
-
 let tickAdvanced = () => {
     timeParserToNum[2] -= 1;// делаем тик, вычитаем секунду
         let timeArray = timeParserToNum.map(item => String(item)); // обратно делаем все строками, чтобы отображать
