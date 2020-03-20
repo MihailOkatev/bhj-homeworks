@@ -17,18 +17,26 @@ class Game {
   }
 
   registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
+  const timer = document.getElementById("timer");
+  this.reset();
+   document.addEventListener('keydown', e => {
+     console.log(this.currentSymbol.textContent);
+     console.log(e.key);
+     this.currentSymbol.textContent === e.key.toLowerCase() ? this.success() : this.fail();
+   })
+   timer.addEventListener('DOMSubtreeModified', e => {
+     if (Number(timer.textContent) === 0) {
+       this.fail();
+     }
+   })
+   
   }
+
 
   success() {
     this.currentSymbol.classList.add('symbol_correct');
     this.currentSymbol = this.currentSymbol.nextElementSibling;
+    this.timerReset();
     if (this.currentSymbol !== null) {
       return;
     }
@@ -52,6 +60,7 @@ class Game {
     const word = this.getWord();
 
     this.renderWord(word);
+    this.timerReset();
   }
 
   getWord() {
@@ -84,7 +93,24 @@ class Game {
 
     this.currentSymbol = this.wordElement.querySelector('.symbol_current');
   }
+  timerReset() { 
+    timer.textContent = Array.from(document.querySelectorAll(".symbol")).length;
+  }
 }
 
 new Game(document.getElementById('game'))
 
+
+let tick = () => {
+    let countdownStart = timer.textContent;
+    countdownStart = Number(countdownStart);
+     countdownStart -= 1;
+     timer.textContent = String(countdownStart);
+     if( timer.textContent === "0") {
+        clearInterval(counting);
+
+    }
+}
+
+
+let counting = setInterval(tick, 1000);
