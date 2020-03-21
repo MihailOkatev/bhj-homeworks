@@ -2,10 +2,8 @@
 const arrows = Array.from(document.querySelectorAll(".slider__arrow"));
 const dots = Array.from(document.querySelectorAll(".slider__dot"));
 
-console.log(arrows);  
 let slidersArr = Array.from(document.querySelectorAll(".slider__item"));
 let sliderNumber = 0;
-console.log(slidersArr);
 arrows.forEach(element => {
     element.addEventListener('click', e => {
         if(element.classList.contains("slider__arrow_next")){
@@ -21,23 +19,28 @@ arrows.forEach(element => {
                 sliderNumber --;
             }
         }
-        document.querySelector(".slider__item_active").classList.remove("slider__item_active");
-        document.querySelector(".slider__dot_active").classList.remove("slider__dot_active");
+        showSlide(sliderNumber);
+        activeDot(sliderNumber);
 
-        slidersArr[sliderNumber].classList.add("slider__item_active");
-        dots[sliderNumber].classList.add("slider__dot_active");
 
-    })
+    });
 });
 
 dots.forEach(element => {
     element.addEventListener('click', e => {
         sliderNumber = dots.indexOf(element);
-        if(document.querySelector(".slider__dot_active") != null) {
-            document.querySelector(".slider__dot_active").classList.remove("slider__dot_active");
-        };
-        e.target.classList.add("slider__dot_active");
-        document.querySelector(".slider__dot_active").classList.remove("slider__item_active");
-        slidersArr[sliderNumber].classList.add("slider__item_active");
-    })
-})
+        showSlide(sliderNumber);
+        activeDot(sliderNumber);
+    });
+});
+
+function showSlide(sliderNumber) {
+    document.querySelector(".slider__item_active").classList.remove("slider__item_active") // закрываем любой активный слайд
+    slidersArr[sliderNumber].classList.add("slider__item_active"); // открываем нужный слайд
+
+}
+
+function activeDot(sliderNumber) {
+    document.querySelector(".slider__dot_active").classList.remove("slider__dot_active") // выключаем активную точку
+    dots[sliderNumber].classList.add("slider__dot_active") // устанавливаем точку на активный слайд
+}
