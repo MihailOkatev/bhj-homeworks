@@ -9,11 +9,13 @@ rotatorsArr.forEach((elem,index) => {
 
 function adsRotate() {
     itemsBox.forEach((element,index) => {
-        if(adNum[index] === element.length - 1) {
-            adNum[index] = 0;
-        }
+       
        element[adNum[index]].classList.remove("rotator__case_active");
        adNum[index]++;
+       if(adNum[index] === element.length) {
+        adNum[index] = 0;
+    }
+       console.log(adNum[index])
        element[adNum[index]].classList.add("rotator__case_active");
        console.log("тик");
        
