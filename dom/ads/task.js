@@ -1,20 +1,26 @@
 "use strict";
 const rotatorsArr = Array.from(document.querySelectorAll(".rotator"));
 let itemsBox = [];
-function adsRotate() {
-    rotatorsArr.forEach((elem,index) => {
-        itemsBox[index] = Array.from(elem.querySelectorAll(".rotator__case"));
-        
-    });
-    itemsBox.forEach((el,index) => {    
-       let adNum = 0;
-       el[adNum].classList.remove("rotator__case_active");
-       adNum++;
-       el
-    });
-}
+let adNum = [];
+rotatorsArr.forEach((elem,index) => {
+    itemsBox[index] = Array.from(elem.querySelectorAll(".rotator__case"));
+    adNum[index] = 0;
+ });
 
+function adsRotate() {
+    itemsBox.forEach((element,index) => {
+        if(adNum[index] === element.length - 1) {
+            adNum[index] = 0;
+        }
+       element[adNum[index]].classList.remove("rotator__case_active");
+       adNum[index]++;
+       element[adNum[index]].classList.add("rotator__case_active");
+       console.log("тик");
+       
+
+    })
+    
+    }
 
 let tick = setInterval(adsRotate, 1000);
-
 window.onload = tick;
