@@ -10,7 +10,7 @@ rotatorsArr.forEach((elem,index) => {
 
 function adsRotate() {
     itemsBox.forEach((element,index) => {
-        let delay = element[adNum[index]].getAttribute("data-speed");
+         delay = element[adNum[index]].getAttribute("data-speed");
         console.log(delay);
         element[adNum[index]].style.color = element[adNum[index]].getAttribute("data-color");
        element[adNum[index]].classList.remove("rotator__case_active");
