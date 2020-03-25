@@ -10,7 +10,8 @@ rotatorsArr.forEach((elem,index) => {
 
 function adsRotate() {
     itemsBox.forEach((element,index) => {
-        let delay = delayC();
+        let delay = element[adNum[index]].getAttribute("data-speed");
+        console.log(delay);
         element[adNum[index]].style.color = element[adNum[index]].getAttribute("data-color");
        element[adNum[index]].classList.remove("rotator__case_active");
        adNum[index]++;
@@ -29,9 +30,4 @@ function adsRotate() {
 let tick = setInterval(adsRotate, 1000);
 window.onload = tick;
 
-function delayC(){
-    delay = this[adNum[index]].getAttribute("data-speed");
-    return delay;
-
-}
 
