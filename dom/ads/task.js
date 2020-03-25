@@ -1,6 +1,7 @@
 "use strict";
 const rotatorsArr = Array.from(document.querySelectorAll(".rotator"));
 let itemsBox = [];
+let delay;
 let adNum = [];
 rotatorsArr.forEach((elem,index) => {
     itemsBox[index] = Array.from(elem.querySelectorAll(".rotator__case"));
@@ -9,7 +10,8 @@ rotatorsArr.forEach((elem,index) => {
 
 function adsRotate() {
     itemsBox.forEach((element,index) => {
-       
+        let delay = delayC();
+        element[adNum[index]].style.color = element[adNum[index]].getAttribute("data-color");
        element[adNum[index]].classList.remove("rotator__case_active");
        adNum[index]++;
        if(adNum[index] === element.length) {
@@ -23,6 +25,13 @@ function adsRotate() {
     })
     
     }
-
+   
 let tick = setInterval(adsRotate, 1000);
 window.onload = tick;
+
+function delayC(){
+    delay = this[adNum[index]].getAttribute("data-speed");
+    return delay;
+
+}
+
