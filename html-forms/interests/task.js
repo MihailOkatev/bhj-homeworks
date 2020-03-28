@@ -15,9 +15,17 @@ selections.forEach(el => {
     }
     if(e.target.closest(".interests_active") != null) {
     let listitems = Array.from(e.target.closest(".interests_active").querySelectorAll(".interest__check"));
-    if(listitems.some(item => item.checked === true)) {
+    console.log(listitems.some(item => item.checked));
+    if(listitems.some(item => item.checked)) {
         e.target.closest(".interests_active").parentElement.querySelector(".interest__check").indeterminate = true;
     } else {
+        e.target.closest(".interests_active").parentElement.querySelector(".interest__check").indeterminate = false;
+    }
+    if(listitems.every(item => item.checked )) {
+        e.target.closest(".interests_active").parentElement.querySelector(".interest__check").indeterminate = false;
+        e.target.closest(".interests_active").parentElement.querySelector(".interest__check").checked = true;
+}
+    if(listitems.every(item => item.checked === false)) {
         e.target.closest(".interests_active").parentElement.querySelector(".interest__check").checked = false;
 
     }
