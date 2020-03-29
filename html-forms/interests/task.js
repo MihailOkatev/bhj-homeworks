@@ -13,21 +13,29 @@ selections.forEach(el => {
                 el.checked = false;
             })
         }
-        if (e.target.closest(".interests_active") != null) {
-            let listItems = Array.from(e.target.closest(".interests_active").querySelectorAll(".interest__check"));
-            if (listItems.some(item => item.checked || item.indeterminate)) {
-                e.target.closest(".interests_active").parentElement.querySelector(".interest__check").indeterminate = true;
-            } else {
-                e.target.closest(".interests_active").parentElement.querySelector(".interest__check").indeterminate = false;
-            }
-            if (listItems.every(item => item.checked)) {
-                e.target.closest(".interests_active").parentElement.querySelector(".interest__check").indeterminate = false;
-                e.target.closest(".interests_active").parentElement.querySelector(".interest__check").checked = true;
-            }
-            if (listItems.every(item => item.checked === false)) {
-                e.target.closest(".interests_active").parentElement.querySelector(".interest__check").checked = false;
-
-            }
-        }
+        let target = e.target
+        parentCheck(target);
     });
 });
+
+function parentCheck(target) {
+    if (target.closest(".interests_active") != null) {
+        let listItems = Array.from(target.closest(".interests_active").querySelectorAll(".interest__check"));
+        if (listItems.some(item => item.checked || item.indeterminate)) {
+            target.closest(".interests_active").parentElement.querySelector(".interest__check").indeterminate = true;
+        } else {
+            target.closest(".interests_active").parentElement.querySelector(".interest__check").indeterminate = false;
+        }
+        if (listItems.every(item => item.checked)) {
+            target.closest(".interests_active").parentElement.querySelector(".interest__check").indeterminate = false;
+            target.closest(".interests_active").parentElement.querySelector(".interest__check").checked = true;
+        }
+        if (listItems.every(item => item.checked === false)) {
+            target.closest(".interests_active").parentElement.querySelector(".interest__check").checked = false;
+
+        }
+        let parentGroupCheckbox = target.closest(".interests_active").parentElement.querySelector(".interest__check");
+        parentCheck(parentGroupCheckbox);
+    }
+
+}
