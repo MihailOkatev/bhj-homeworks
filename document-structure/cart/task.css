@@ -89,3 +89,7 @@ body {
 .product-shadow {
   position: absolute;
 }
+
+.visability-hidden {
+  display:none;
+}
