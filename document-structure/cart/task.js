@@ -20,10 +20,7 @@ addToCartBtns.forEach(elem => {
         let cartItems = Array.from(document.querySelectorAll(".cart__product"));
         if (cartItems.some(function (element, index) {
             element.getAttribute("data-id") === e.target.closest(".product").getAttribute("data-id")
-            console.log(index);
-            console.log(cartItems[index]);
-            console.log(element.closest(".cart__product").querySelector(".cart__product-count"))
-            cartItems[index].querySelector(".cart__product-conut").textContent = Number(element.closest(".cart__product").querySelector(".cart__product-conut")) + Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent);
+            cartItems[index].querySelector(".cart__product-count").textContent = Number(cartItems[index].querySelector(".cart__product-count").textContent) + Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent);
 
 
         }))
