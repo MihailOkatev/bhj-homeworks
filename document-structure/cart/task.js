@@ -4,27 +4,25 @@ const quantityFields = Array.from(document.querySelectorAll(".product__quantity-
 const addToCartBtns = Array.from(document.querySelectorAll(".product__add"));
 const cartContent = document.querySelector(".cart__products");
 countButtons.forEach(elem => {
-   elem.addEventListener('click', e=> {
-      if(e.target.classList.contains("product__quantity-control_inc")) {
-          e.target.closest(".product").querySelector( ".product__quantity-value").textContent = Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent) + 1;
-      } else {
-          e.target.closest(".product").querySelector( ".product__quantity-value").textContent = Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent) - 1;
+    elem.addEventListener('click', e => {
+        if (e.target.classList.contains("product__quantity-control_inc")) {
+            e.target.closest(".product").querySelector(".product__quantity-value").textContent = String(Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent) + 1);
+        } else {
+            e.target.closest(".product").querySelector(".product__quantity-value").textContent = String(Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent) - 1);
 
-      }
-       quantityCheck();
-   });
+        }
+        quantityCheck();
+    });
 });
 
 addToCartBtns.forEach(elem => {
-    elem.addEventListener('click', e=> {
+    elem.addEventListener('click', e => {
+        let article = e.target.closest(".product").getAttribute("data-id");
         let cartItems = Array.from(document.querySelectorAll(".cart__product"));
-        if (cartItems.some(function (element, index) {
-            element.getAttribute("data-id") === e.target.closest(".product").getAttribute("data-id")
-            cartItems[index].querySelector(".cart__product-count").textContent = Number(cartItems[index].querySelector(".cart__product-count").textContent) + Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent);
+        if (cartItems.some(element => element.getAttribute("data-id") === article)) {
+            cartContent.querySelector(`.cart__product[data-id="${article}"`).querySelector(".cart__product-count").textContent = Number(cartContent.querySelector(`.cart__product[data-id="${article}"`).querySelector(".cart__product-count").textContent) + Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent);
+            // Number(cartItems[index].querySelector(".cart__product-count").textContent) + Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent);
 
-
-        }))
-            {
         } else {
             let newProduct = document.createElement('div');
             let productImg = document.createElement('img');
@@ -40,15 +38,14 @@ addToCartBtns.forEach(elem => {
             newProduct.append(productCount);
         }
 
-    })
-})
+    });
+});
 
 function quantityCheck() {
     quantityFields.forEach(elem => {
-        if(elem.textContent == 1) {
+        if (elem.textContent === 1) {
             elem.closest(".product").querySelector(".product__quantity-control_dec").classList.add("visability-hidden");
-        }
-        else{
+        } else {
             elem.closest(".product").querySelector(".product__quantity-control_dec").classList.remove("visability-hidden");
 
         }
