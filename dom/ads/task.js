@@ -1,32 +1,33 @@
 "use strict";
 const rotatorsArr = Array.from(document.querySelectorAll(".rotator"));
 let itemsBox = [];
-let delay;
-let adNum = [];
-rotatorsArr.forEach((elem,index) => {
+rotatorsArr.forEach((elem, index) => {
     itemsBox[index] = Array.from(elem.querySelectorAll(".rotator__case"));
-    adNum[index] = 0;
- });
+});
 
-function adsRotate() {
-    itemsBox.forEach((element,index) => {
-        element[adNum[index]].style.color = element[adNum[index]].getAttribute("data-color");
-         delay = element[adNum[index]].getAttribute("data-speed");
-       element[adNum[index]].classList.remove("rotator__case_active");
-       adNum[index]++;
-       if(adNum[index] === element.length) {
-        adNum[index] = 0;
+function adsRotate(adsArr) {
+    let i = 0;
+    adsArr[i].style.color = adsArr[i].getAttribute("data-color");
+    setTimeout(nextstep, delayCounting(adsArr, i), adsArr, i);
+}
+
+function nextstep(adsArr, i) {
+    adsArr[i].classList.remove("rotator__case_active");
+    i++;
+    if (i === adsArr.length) {
+        i = 0;
     }
-       element[adNum[index]].classList.add("rotator__case_active");
-       element[adNum[index]].style.color = element[adNum[index]].getAttribute("data-color");
+    adsArr[i].classList.add("rotator__case_active");
+    adsArr[i].style.color = adsArr[i].getAttribute("data-color");
+    setTimeout(nextstep, delayCounting(adsArr, i), adsArr, i);
 
-       
+}
 
-    })
-    
-    }
-   
-let tick = setInterval(adsRotate, 1000);
-window.onload = tick;
+function delayCounting(adsArr, i) {
+    return adsArr[i].getAttribute("data-speed");
 
+}
 
+for (let i = 0; i < itemsBox.length; i++) {
+    adsRotate(itemsBox[i]);
+}
