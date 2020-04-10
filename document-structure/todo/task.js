@@ -36,9 +36,10 @@ function saveItem() {
 }
 
 function restore() {
-    JSON.parse(localStorage.getItem("tasksArr")).forEach((elem) => {
-        taskField.value = elem;
-        addTaskButton.click();
-    });
-
+    if (localStorage.getItem("tasksArr") !== null) {
+        JSON.parse(localStorage.getItem("tasksArr")).forEach((elem) => {
+            taskField.value = elem;
+            addTaskButton.click();
+        });
+    }
 }
