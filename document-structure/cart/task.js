@@ -21,7 +21,6 @@ addToCartBtns.forEach(elem => {
         let cartItems = Array.from(document.querySelectorAll(".cart__product"));
         if (cartItems.some(element => element.getAttribute("data-id") === article)) {
             cartContent.querySelector(`.cart__product[data-id="${article}"`).querySelector(".cart__product-count").textContent = Number(cartContent.querySelector(`.cart__product[data-id="${article}"`).querySelector(".cart__product-count").textContent) + Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent);
-            // Number(cartItems[index].querySelector(".cart__product-count").textContent) + Number(e.target.closest(".product").querySelector(".product__quantity-value").textContent);
 
         } else {
             let newProduct = document.createElement('div');
@@ -43,7 +42,7 @@ addToCartBtns.forEach(elem => {
 
 function quantityCheck() {
     quantityFields.forEach(elem => {
-        if (elem.textContent === 1) {
+        if (elem.textContent == 1) {
             elem.closest(".product").querySelector(".product__quantity-control_dec").classList.add("visability-hidden");
         } else {
             elem.closest(".product").querySelector(".product__quantity-control_dec").classList.remove("visability-hidden");
