@@ -1,13 +1,13 @@
 const poll = document.querySelector(".poll");
 document.addEventListener("DOMContentLoaded", () => {
     let request = new XMLHttpRequest();
-    request.open("Get"," https://netology-slow-rest.herokuapp.com/poll.php");
+    request.open("Get", " https://netology-slow-rest.herokuapp.com/poll.php");
     request.send();
     request.addEventListener("readystatechange", () => {
         console.log(request.readyState);
         console.log(request.status);
-        if(request.readyState === 4 ) {
-            if(request.status === 200) {
+        if (request.readyState === 4) {
+            if (request.status === 200) {
                 let serverAnswer = JSON.parse(request.responseText);
                 console.log(serverAnswer);
                 let question = serverAnswer.data;
