@@ -16,11 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 руб.
             </div>`
                 }
+            } else {
+                items.innerHTML += `<p style="color:red">Что-то пошло не так</p>`
             }
 
 
-        } else {
-            items.innerHTML += `<p style="color:red">Что-то пошло не так</p>`
         }
         loaderImage.classList.remove("loader_active");
 
