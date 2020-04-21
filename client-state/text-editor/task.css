@@ -1,0 +1,9 @@
+button {
+    display: block;
+    height: 50px;
+    font-weight: 700;
+    background-color: #7fc7ff;
+}
+button:hover {
+    background-color: orangered;
+}
